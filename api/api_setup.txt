@@ -1,0 +1,32 @@
+ npm i cors dotenv express gitignore mysql2 nodemon path router typeorm uuid 
+
+ npm i typescript --save-dev
+
+ npx tsc --init
+
+ npm i @types/cors @types/express @types/node @types/uuid --save-dev
+
+
+package.json:
+
+  "scripts": {
+    "start": "ts-node server.ts",
+    "dev": "nodemon"
+  },
+  
+npm i ts-node --save-dev
+
+new file : nodemon.json
+|
+|--> {
+  "watch": ["**/*.ts"],
+  "ext": "ts",
+  "ignore": ["node_modules"],
+  "exec": "npx ts-node server.ts"
+}
+
+tsconfig.json:
+    "experimentalDecorators": true,                      
+    "emitDecoratorMetadata": true,     
+
+npm run dev
