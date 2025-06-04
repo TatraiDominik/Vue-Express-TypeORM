@@ -15,7 +15,7 @@ const addNewMovie = async (req: Request, res: Response, next: NextFunction): Pro
     try {
         const { name, madeIn, cost, producerId } = req.body;
         
-        // Validate required fields
+
         const missingFields = [];
         if (!name) missingFields.push("name");
         if (!madeIn) missingFields.push("madeIn");
