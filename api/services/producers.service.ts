@@ -48,13 +48,30 @@ const updateProducer = async (
 };
 
 const deleteProducer = async (prodId: string) => {
-
+    // Find the producer with their movies count
     const currentProducer = await producerRepository.findOne({where: {id: prodId}});
     
     if(!currentProducer) throw new Error("Cannot find producer");
-
+    
+    // Get the current movies count
+    const moviesCount = await movieRepository.count({ 
+        where: { producer: { id: prodId } } 
+    });
+    
+    // If the producer has movies, delete them first
+    if (moviesCount > 0) {
+        // Find all movies by this producer
+        const movies = await movieRepository.find({ 
+            where: { producer: { id: prodId } } 
+        });
+        
+        // Delete all movies by this producer
+        await movieRepository.remove(movies);
+    }
+    
+    // Now delete the producer
     await producerRepository.delete(currentProducer);
-    return { message: "Producer successfully deleted!"};
+    return { message: "Producer successfully deleted!", deletedMoviesCount: moviesCount };
 };
 
 /**

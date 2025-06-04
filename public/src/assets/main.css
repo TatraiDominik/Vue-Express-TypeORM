@@ -1,0 +1,9 @@
+html,body,#app{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-content: start;
+    justify-items: start;
+    min-height: 100vh;
+    height: 100%;
+}

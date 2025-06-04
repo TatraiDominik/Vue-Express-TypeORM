@@ -49,8 +49,8 @@ const deleteCurrentProducer = async (req: Request, res: Response, next: NextFunc
     
     try{
         const producerId = req.params.id;
-        await deleteProducer(producerId);
-        return res.status(200).json({message:"Producer deleted successfully!"}) 
+        const result = await deleteProducer(producerId);
+        return res.status(200).json(result) 
     }catch(error:any){
         next(error);
     };
